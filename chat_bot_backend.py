@@ -9,8 +9,8 @@ from dotenv import load_dotenv
 #defining checkpoint for saving memory at each node:
 check_point = MemorySaver()
 #loading env file to acess API keys:
-load_dotenv()
-
+# load_dotenv()
+os.environ["HUGGINGFACEHUB_API_TOKEN"] = st.secrets["HUGGINGFACEHUB_API_TOKEN"]
 #Making a state of gaph:
 class bot(TypedDict):
   messages : Annotated[list[BaseMessage],add_messages]
@@ -52,5 +52,6 @@ graph_chatbot = graph.compile(checkpointer=check_point)
 #   response = comp_g.invoke({'messages':HumanMessage(content =prompt)},config=config)
   # ai_contents = [msg.content for msg in response["messages"] if isinstance(msg, AIMessage)]
 #   print(response['messages'][-1].content)
+
 
 
